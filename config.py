@@ -20,7 +20,7 @@ IMAGE_SIZE = 512  # All images resized to IMAGE_SIZE x IMAGE_SIZE
 # ──────────────────────────────────────────────
 # Model
 # ──────────────────────────────────────────────
-ENCODER_NAME = "resnet34"
+ENCODER_NAME = "resnet50"
 ENCODER_WEIGHTS = "imagenet"
 IN_CHANNELS = 3   # RGB (alpha channel dropped during loading)
 NUM_CLASSES = 1   # Binary segmentation (lesion vs. background)
