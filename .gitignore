@@ -9,3 +9,5 @@ poetry.lock
 pyproject.toml
 .python-version
 dataset.zip
+teste.py
+.env

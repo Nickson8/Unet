@@ -32,7 +32,7 @@ def run() -> Dict[str, Any]:
         all_pairs         – list of (img_path, geojson_path)
     """
     # ── Discover data ──────────────────────────
-    all_pairs = discover_image_mask_pairs(config.DATA_DIR)
+    all_pairs = discover_image_mask_pairs(config.DATA_DIR)[:10] + discover_image_mask_pairs(config.DATA_DIR)[-10:]
     n_total = len(all_pairs)
     print(f"\n{'═' * 60}")
     print(f"  Dataset: {n_total} image–annotation pairs found")
@@ -42,10 +42,13 @@ def run() -> Dict[str, Any]:
         n_splits=config.NUM_FOLDS, shuffle=True, random_state=config.SEED
     )
 
+    # Store fold splits for reuse by classifiers
+    fold_splits = list(kf.split(all_pairs))
+
     fold_metrics: List[Dict[str, float]] = []
     loss_histories: List[List[Dict]] = []
 
-    for fold_idx, (train_idx, val_idx) in enumerate(kf.split(all_pairs), start=1):
+    for fold_idx, (train_idx, val_idx) in enumerate(fold_splits, start=1):
         print(f"\n{'─' * 60}")
         print(f"  FOLD {fold_idx}/{config.NUM_FOLDS}  "
               f"(train={len(train_idx)}, val={len(val_idx)})")
@@ -105,5 +108,6 @@ def run() -> Dict[str, Any]:
         },
         "loss_histories": loss_histories,
         "all_pairs": all_pairs,
+        "fold_splits": fold_splits,
     }
     return results
