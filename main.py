@@ -48,7 +48,7 @@ def main() -> None:
         os.makedirs(d, exist_ok=True)
 
     # ── 3. Discover dataset ────────────────────
-    all_pairs = discover_image_mask_pairs(config.DATA_DIR)[:10] + discover_image_mask_pairs(config.DATA_DIR)[-10:]
+    all_pairs = discover_image_mask_pairs(config.DATA_DIR)
     print(f"\n  Dataset path: {config.DATA_DIR}")
     print(f"  Total images: {len(all_pairs)}")
     print(f"  Device: {config.DEVICE}\n")

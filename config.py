@@ -28,8 +28,8 @@ NUM_CLASSES = 1   # Binary segmentation (lesion vs. background)
 # ──────────────────────────────────────────────
 # Training
 # ──────────────────────────────────────────────
-BATCH_SIZE = 2
-NUM_EPOCHS = 2
+BATCH_SIZE = 32
+NUM_EPOCHS = 100
 LR = 1e-4
 WEIGHT_DECAY = 1e-4
 FREEZE_ENCODER_EPOCHS = 5   # Freeze encoder for first N epochs
@@ -50,7 +50,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # ──────────────────────────────────────────────
 # Classification (Stage 2)
 # ──────────────────────────────────────────────
-CLF_NUM_EPOCHS = 2  # May differ from segmentation epochs
+CLF_NUM_EPOCHS = 50  # May differ from segmentation epochs
 
 # ──────────────────────────────────────────────
 # Output directories (created at runtime)

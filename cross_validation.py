@@ -32,7 +32,7 @@ def run() -> Dict[str, Any]:
         all_pairs         – list of (img_path, geojson_path)
     """
     # ── Discover data ──────────────────────────
-    all_pairs = discover_image_mask_pairs(config.DATA_DIR)[:10] + discover_image_mask_pairs(config.DATA_DIR)[-10:]
+    all_pairs = discover_image_mask_pairs(config.DATA_DIR)
     n_total = len(all_pairs)
     print(f"\n{'═' * 60}")
     print(f"  Dataset: {n_total} image–annotation pairs found")
